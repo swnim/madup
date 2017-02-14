@@ -1,4 +1,3 @@
-let path = require('path');
 let webpack = require('webpack');
 
 module.exports = {
@@ -7,7 +6,7 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve(__dirname, 'server/static/js'),
+        path: __dirname + '/server/static/js',
         filename: 'bundle.js'
     },
 
