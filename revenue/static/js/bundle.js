@@ -11128,7 +11128,7 @@ exports = module.exports = __webpack_require__(109)();
 
 
 // module
-exports.push([module.i, ".card {\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);\n    transition: 0.3s;\n    width: 30%;\n    border-radius: 5px;\n    display: inline-block;\n    margin: 10px;\n}\n\n.card:hover {\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);\n}\n\n.container {\n    padding: 2px 16px;\n}", ""]);
+exports.push([module.i, ".card {\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);\n    transition: 0.3s;\n    width: 20%;\n    border-radius: 5px;\n    display: inline-block;\n    margin: 10px;\n}\n\n.card:hover {\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);\n}\n\n.container {\n    padding: 2px 16px;\n}", ""]);
 
 // exports
 
