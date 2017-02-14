@@ -3,11 +3,11 @@ let webpack = require('webpack');
 
 module.exports = {
     entry: {
-        index: __dirname + '/src/index.js'
+        index: __dirname + '/client/index.js'
     },
 
     output: {
-        path: path.resolve(__dirname, 'revenue/static/js'),
+        path: path.resolve(__dirname, 'server/static/js'),
         filename: 'bundle.js'
     },
 

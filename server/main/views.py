@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, jsonify
-from revenue.main import main
-from revenue.models import User, db
+from server.main import main
+from server.models import User, db
 
 
 @main.route('/')
