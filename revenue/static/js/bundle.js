@@ -11072,10 +11072,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Card = function (_React$Component) {
     _inherits(Card, _React$Component);
 
-    function Card(props) {
+    function Card() {
         _classCallCheck(this, Card);
 
-        return _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).call(this, props));
+        return _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).apply(this, arguments));
     }
 
     _createClass(Card, [{

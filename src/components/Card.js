@@ -3,10 +3,6 @@ import './Card.css';
 
 
 class Card extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let styles = {
             imgStyle: {
