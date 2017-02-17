@@ -1,6 +1,7 @@
-from flask import render_template, redirect, url_for, jsonify
-from server.main import main
+from flask import Blueprint, render_template, redirect, url_for
 from server.models import User, db
+
+main = Blueprint('main', __name__)
 
 
 @main.route('/')
@@ -21,9 +22,3 @@ def add_user(name):
     db.session.add(user)
     db.session.commit()
     return redirect(url_for('main.users'))
-
-
-@main.route('/api/users')
-def api_users():
-    users = User.query.all()
-    return jsonify([user.to_dict() for user in users])

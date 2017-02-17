@@ -2724,7 +2724,8 @@ ReactElement.cloneElement = function (element, config, children) {
   return ReactElement(element.type, key, ref, self, source, owner, props);
 };
 
-/**
+//noinspection JSAnnotator
+            /**
  * Verifies the object is a ReactElement.
  * See https://facebook.github.io/react/docs/top-level-api.html#react.isvalidelement
  * @param {?object} object

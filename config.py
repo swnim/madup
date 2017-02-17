@@ -6,6 +6,7 @@ class Config(object):
     TESTING = False
     DEVELOPMENT = False
     CSRF_ENABLED = True
+    JSON_AS_ASCII = False
     SECRET_KEY = 'secret'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = 'mysql://madup:15221060@localhost/madup'
