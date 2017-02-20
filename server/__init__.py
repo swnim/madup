@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restless import APIManager
+from flasgger import Swagger
 
 from server.models import db, User, Campaign
 import config
@@ -13,6 +14,7 @@ def create_app():
     app = Flask(__name__)
     config.init_app(app)
     db.init_app(app)
+    Swagger(app)
 
     with app.app_context():
         """ application blueprints """

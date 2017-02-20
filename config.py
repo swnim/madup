@@ -10,6 +10,15 @@ class Config(object):
     SECRET_KEY = 'secret'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = 'mysql://madup:15221060@localhost/madup'
+    SWAGGER = {
+        "swagger_version": "2.0",
+        "title": "Flasgger",
+        "headers": [
+            ('Access-Control-Allow-Origin', '*'),
+            ('Access-Control-Allow-Methods', "GET, POST, PUT, DELETE, OPTIONS"),
+            ('Access-Control-Allow-Credentials', "true"),
+        ]
+    }
 
 
 class ProductionConfig(Config):
