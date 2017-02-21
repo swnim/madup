@@ -9,7 +9,7 @@ class Config(object):
     JSON_AS_ASCII = False
     SECRET_KEY = 'secret'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'mysql://madup:15221060@localhost/madup'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:admin@localhost/madup_db'
     SWAGGER = {
         "swagger_version": "2.0",
         "title": "Flasgger",

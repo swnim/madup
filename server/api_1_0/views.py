@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 from server.models import User
 
-api = Blueprint('api', __name__)
+api = Blueprint('api_1_0', __name__)
 
 
 @api.route('/users')
@@ -22,15 +22,15 @@ def users():
               id:
                 type: integer
                 description: The ID of the user
-              name:
+              username:
                 type: string
                 description: The name of the user
-              phone:
+              email:
                 type: string
-                description: The phone-number of the user
-              avatarUrl:
+                description: The email of the user
+              current_ip:
                 type: string
-                description: Avatar image URL
+                description: Current user IP
     """
     users = User.query.all()
     return jsonify([user.to_dict() for user in users])
@@ -58,15 +58,15 @@ def get_user(user_id):
             id:
               type: integer
               description: The ID of the user
-            name:
+            username:
               type: string
               description: The name of the user
-            phone:
+            email:
               type: string
-              description: The phone-number of the user
-            avatarUrl:
+              description: The email of the user
+            current_ip:
               type: string
-              description: Avatar image URL
+              description: Current user IP
     """
     user = User.query.get(user_id)
     return jsonify(user.to_dict())
