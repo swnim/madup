@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
-from sqlalchemy.ext.hybrid import hybrid_method
+from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 
 db = SQLAlchemy()
 
@@ -52,6 +52,21 @@ class Advertiser(db.Model, BaseMixin):
     install = db.Column(db.Integer)
     price_advertiser = db.Column(db.BigInteger)
     price_affiliate = db.Column(db.BigInteger)
+
+    @hybrid_property
+    def icon_url(self):
+        if self.icon_file_name:
+            return 'http://revenue.madup.com/system/advertisers/icons/000/000/%s/medium/%s' % (str(self.id).zfill(3), self.icon_file_name)
+        else:
+            return 'http://revenue.madup.com/images/game.png'
+
+    @hybrid_method
+    def to_dict(self):
+        return dict(
+            id=self.id,
+            name=self.name,
+            iconUrl=self.icon_url
+        )
 
 
 class Affiliate(db.Model, BaseMixin):

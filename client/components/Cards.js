@@ -13,7 +13,7 @@ class Cards extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/users')
+        axios.get('/api/advertisers')
             .then(res => {
                 this.setState({
                     loaded: false,
@@ -29,8 +29,7 @@ class Cards extends React.Component {
                 {this.state.cards.map(function(card, key) {
                     return (<Card key={key}
                                   name={card.name}
-                                  phone={card.phone}
-                                  avatarUrl={card.avatarUrl}/>
+                                  iconUrl={card.iconUrl}/>
                     );
                 })}
             </div>

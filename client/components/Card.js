@@ -13,10 +13,10 @@ class Card extends React.Component {
 
         return (
             <div className="card">
-                <img src={this.props.avatarUrl} style={styles.imgStyle}/>
+                <img src={this.props.iconUrl} style={styles.imgStyle}/>
                 <div className="container">
                     <h4><b>{this.props.name}</b></h4>
-                    <p>{this.props.phone}</p>
+                    <p>{this.props.email}</p>
                 </div>
             </div>
         );

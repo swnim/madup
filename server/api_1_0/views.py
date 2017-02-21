@@ -1,7 +1,39 @@
 from flask import Blueprint, jsonify
-from server.models import User
+from server.models import User, Advertiser
 
 api = Blueprint('api_1_0', __name__)
+
+
+@api.route('/advertisers')
+def advertisers():
+    """
+    Get a list of users
+    ---
+    tags:
+      - users
+    responses:
+      200:
+        description: Returns a list of users
+        schema:
+          id: users
+          type: array
+          items:
+            properties:
+              id:
+                type: integer
+                description: The ID of the user
+              username:
+                type: string
+                description: The name of the user
+              email:
+                type: string
+                description: The email of the user
+              current_ip:
+                type: string
+                description: Current user IP
+    """
+    advertisers = Advertiser.query.all()
+    return jsonify([advertiser.to_dict() for advertiser in advertisers])
 
 
 @api.route('/users')

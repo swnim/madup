@@ -2724,8 +2724,7 @@ ReactElement.cloneElement = function (element, config, children) {
   return ReactElement(element.type, key, ref, self, source, owner, props);
 };
 
-//noinspection JSAnnotator
-            /**
+/**
  * Verifies the object is a ReactElement.
  * See https://facebook.github.io/react/docs/top-level-api.html#react.isvalidelement
  * @param {?object} object
@@ -10162,7 +10161,7 @@ var Cards = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            _axios2.default.get('/api/users').then(function (res) {
+            _axios2.default.get('/api/advertisers').then(function (res) {
                 _this2.setState({
                     loaded: false,
                     cards: res.data
@@ -10180,8 +10179,7 @@ var Cards = function (_React$Component) {
                 this.state.cards.map(function (card, key) {
                     return _react2.default.createElement(_Card2.default, { key: key,
                         name: card.name,
-                        phone: card.phone,
-                        avatarUrl: card.avatarUrl });
+                        iconUrl: card.iconUrl });
                 })
             );
         }
@@ -11092,7 +11090,7 @@ var Card = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'card' },
-                _react2.default.createElement('img', { src: this.props.avatarUrl, style: styles.imgStyle }),
+                _react2.default.createElement('img', { src: this.props.iconUrl, style: styles.imgStyle }),
                 _react2.default.createElement(
                     'div',
                     { className: 'container' },
@@ -11108,7 +11106,7 @@ var Card = function (_React$Component) {
                     _react2.default.createElement(
                         'p',
                         null,
-                        this.props.phone
+                        this.props.email
                     )
                 )
             );
@@ -11129,7 +11127,7 @@ exports = module.exports = __webpack_require__(109)();
 
 
 // module
-exports.push([module.i, ".card {\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);\n    transition: 0.3s;\n    width: 20%;\n    border-radius: 5px;\n    display: inline-block;\n    margin: 10px;\n}\n\n.card:hover {\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);\n}\n\n.container {\n    padding: 2px 16px;\n}", ""]);
+exports.push([module.i, ".card {\r\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);\r\n    transition: 0.3s;\r\n    width: 20%;\r\n    border-radius: 5px;\r\n    display: inline-block;\r\n    margin: 10px;\r\n}\r\n\r\n.card:hover {\r\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);\r\n}\r\n\r\n.container {\r\n    padding: 2px 16px;\r\n}", ""]);
 
 // exports
 
@@ -23688,8 +23686,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js!./Card.css", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js!./Card.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./Card.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./Card.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
