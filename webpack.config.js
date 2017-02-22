@@ -7,7 +7,7 @@ module.exports = {
 
     output: {
         path: __dirname + '/server/static/js',
-        filename: 'bundle.js'
+        filename: 'bundle.[name].js'
     },
 
     module: {
