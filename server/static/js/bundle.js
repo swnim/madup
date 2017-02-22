@@ -10518,14 +10518,15 @@ var Cards = function (_React$Component) {
                 this.state.cards.map(function (card, key) {
                     return _react2.default.createElement(_Card2.default, { key: key,
                         name: card.name,
-                        icon_url: card.icon_url });
+                        icon_url: card.icon_url,
+                        campaigns: card.campaigns });
                 }),
                 _react2.default.createElement(
                     'div',
                     { id: 'loading' },
                     _react2.default.createElement(
                         'button',
-                        { className: 'button', onClick: this.getCards.bind(this) },
+                        { className: 'button', style: { margin: 0, width: "100%", fontSize: "16px" }, onClick: this.getCards.bind(this) },
                         'Loading...'
                     )
                 )
@@ -11419,10 +11420,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Card = function (_React$Component) {
     _inherits(Card, _React$Component);
 
-    function Card() {
+    function Card(props) {
         _classCallCheck(this, Card);
 
-        return _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).call(this, props));
     }
 
     _createClass(Card, [{
@@ -11433,10 +11434,20 @@ var Card = function (_React$Component) {
                     width: "100px",
                     height: "100px",
                     display: "block",
-                    margin: "30px auto",
+                    margin: "30px auto 10px auto",
                     boarderRadius: "5px"
                 }
             };
+
+            if (this.props.campaigns) {
+                var campaigns = this.props.campaigns.map(function (campaign, key) {
+                    return _react2.default.createElement(
+                        'button',
+                        { className: 'button green', key: key },
+                        campaign.platform
+                    );
+                });
+            }
 
             return _react2.default.createElement(
                 'div',
@@ -11455,9 +11466,9 @@ var Card = function (_React$Component) {
                         )
                     ),
                     _react2.default.createElement(
-                        'p',
-                        null,
-                        this.props.email
+                        'div',
+                        { className: 'platforms' },
+                        campaigns
                     )
                 )
             );
@@ -11478,7 +11489,7 @@ exports = module.exports = __webpack_require__(60)();
 
 
 // module
-exports.push([module.i, ".card {\r\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);\r\n    transition: 0.3s;\r\n    min-width: 180px;\r\n    border-radius: 5px;\r\n    display: inline-block;\r\n    margin: 10px;\r\n}\r\n\r\n.card:hover {\r\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);\r\n}\r\n\r\n.container {\r\n    padding: 2px 16px;\r\n    font-size: 14px;\r\n}", ""]);
+exports.push([module.i, ".card {\r\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);\r\n    transition: 0.3s;\r\n    min-width: 180px;\r\n    border-radius: 5px;\r\n    display: inline-block;\r\n    margin: 10px;\r\n}\r\n\r\n.card:hover {\r\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);\r\n}\r\n\r\n.container {\r\n    padding: 2px 10px 10px 10px;\r\n    text-align: center;\r\n    color: #455a64;\r\n}\r\n\r\n.platforms {\r\n    display: inline;\r\n}\r\n\r\n.button {\r\n    border: none;\r\n    color: white;\r\n    padding: 5px 5px;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    font-size: 12px;\r\n    cursor: pointer;\r\n    border-radius: 2px;\r\n    width: 60px;\r\n    margin: 0 7px;\r\n}\r\n\r\n.button.blue {\r\n    background-color: #5bc0de;\r\n}\r\n\r\n.button.green {\r\n    background-color: #4CAF50;\r\n}", ""]);
 
 // exports
 
@@ -11492,7 +11503,7 @@ exports = module.exports = __webpack_require__(60)();
 
 
 // module
-exports.push([module.i, ".button {\r\n    background-color: #4CAF50; /* Green */\r\n    border: none;\r\n    color: white;\r\n    padding: 15px 32px;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    font-size: 16px;\r\n    cursor: pointer;\r\n    border-radius: 4px;\r\n    width: 100%;\r\n}", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 

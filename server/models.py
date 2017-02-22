@@ -65,7 +65,8 @@ class Advertiser(db.Model, BaseMixin):
         return dict(
             id=self.id,
             name=self.name,
-            icon_url=self.icon_url
+            icon_url=self.icon_url,
+            campaigns=[campaign.to_dict() for campaign in self.campaigns]
         )
 
 
@@ -92,6 +93,13 @@ class Platform(db.Model, BaseMixin):
     icon_file_size = db.Column(db.Integer)
     icon_updated_at = db.Column(db.DateTime)
 
+    @hybrid_method
+    def to_dict(self):
+        return dict(
+            id=self.id,
+            name=self.name
+        )
+
 
 class Campaign(db.Model, BaseMixin):
     __tablename__ = 'campaigns'
@@ -107,6 +115,14 @@ class Campaign(db.Model, BaseMixin):
 
     platform = db.relationship('Platform', backref=db.backref('campaigns'))
     advertiser = db.relationship('Advertiser', backref=db.backref('campaigns'))
+
+    @hybrid_method
+    def to_dict(self):
+        return dict(
+            id=self.id,
+            install=self.install,
+            platform=self.platform.name
+        )
 
 
 class Integration(db.Model, BaseMixin):

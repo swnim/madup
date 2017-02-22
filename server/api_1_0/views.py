@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 from flask import request
 
-from server.models import User, Advertiser
+from server.models import User, Advertiser, Campaign
 
 api = Blueprint('api_1_0', __name__)
 
@@ -9,15 +9,15 @@ api = Blueprint('api_1_0', __name__)
 @api.route('/advertisers')
 def get_advertisers():
     """
-    Get a list of users
+    Get a list of advertisers
     ---
     tags:
-      - users
+      - advertisers
     responses:
       200:
-        description: Returns a list of users
+        description: Returns a list of advertisers
         schema:
-          id: users
+          id: advertisers
           type: array
           items:
             properties:
@@ -35,6 +35,37 @@ def get_advertisers():
     page_offest = request.args.get('offset')
     advertisers = Advertiser.query.limit(page_limit).offset(page_offest).all()
     return jsonify([advertiser.to_dict() for advertiser in advertisers])
+
+
+@api.route('/campaigns')
+def get_campaigns():
+    """
+    Get a list of campaigns
+    ---
+    tags:
+      - campaigns
+    responses:
+      200:
+        description: Returns a list of campaigns
+        schema:
+          id: campaigns
+          type: array
+          items:
+            properties:
+              id:
+                type: integer
+                description: The ID of the user
+              name:
+                type: string
+                description: The name of the user
+              icon_url:
+                type: string
+                description: Icon URL
+    """
+    page_limit = request.args.get('limit')
+    page_offest = request.args.get('offset')
+    campaigns = Campaign.query.limit(page_limit).offset(page_offest).all()
+    return jsonify([campaign.to_dict() for campaign in campaigns])
 
 
 @api.route('/users')

@@ -54,14 +54,15 @@ class Cards extends React.Component {
     render() {
         return (
             <div id="cards">
-                {this.state.cards.map(function(card, key) {
+                {this.state.cards.map((card, key) => {
                     return (<Card key={key}
                                    name={card.name}
-                                   icon_url={card.icon_url}/>
+                                   icon_url={card.icon_url}
+                                   campaigns={card.campaigns}/>
                     );
                 })}
                 <div id="loading">
-                    <button className="button" onClick={this.getCards.bind(this)}>Loading...</button>
+                    <button className="button" style={{margin:0, width:"100%", fontSize:"16px"}} onClick={this.getCards.bind(this)}>Loading...</button>
                 </div>
             </div>
         );
