@@ -6,14 +6,17 @@ class Card extends React.Component {
     render() {
         let styles = {
             imgStyle: {
-                width: "100%",
-                borderRadius: "5px 5px 0 0"
+                width: "100px",
+                height: "100px",
+                display: "block",
+                margin: "30px auto",
+                boarderRadius: "5px"
             }
         };
 
         return (
             <div className="card">
-                <img src={this.props.iconUrl} style={styles.imgStyle}/>
+                <img src={this.props.icon_url} style={styles.imgStyle}/>
                 <div className="container">
                     <h4><b>{this.props.name}</b></h4>
                     <p>{this.props.email}</p>

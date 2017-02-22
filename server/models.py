@@ -65,7 +65,7 @@ class Advertiser(db.Model, BaseMixin):
         return dict(
             id=self.id,
             name=self.name,
-            iconUrl=self.icon_url
+            icon_url=self.icon_url
         )
 
 
