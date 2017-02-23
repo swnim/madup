@@ -2,7 +2,8 @@ let webpack = require('webpack');
 
 module.exports = {
     entry: {
-        index: __dirname + '/client/index.js'
+        index: __dirname + '/client/index.js',
+        affiliates: __dirname + '/client/affiliates.js'
     },
 
     output: {

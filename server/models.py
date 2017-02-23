@@ -83,6 +83,23 @@ class Affiliate(db.Model, BaseMixin):
     icon_file_size = db.Column(db.Integer)
     icon_updated_at = db.Column(db.DateTime)
 
+    @hybrid_property
+    def icon_url(self):
+        if self.icon_file_name:
+            return 'http://revenue.madup.com/system/affiliates/icons/000/000/%s/thumb/%s' % (str(self.id).zfill(3), self.icon_file_name)
+        else:
+            return 'http://revenue.madup.com/images/default.png'
+
+    @hybrid_method
+    def to_dict(self):
+        return dict(
+            id=self.id,
+            name=self.name,
+            code=self.code,
+            install=self.install,
+            icon_url=self.icon_url
+        )
+
 
 class Platform(db.Model, BaseMixin):
     __tablename__ = 'platforms'

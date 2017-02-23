@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for
-from server.models import User, db
+from server.models import User, db, Affiliate, CampaignAffiliate
 
 main = Blueprint('main', __name__)
 
@@ -9,10 +9,9 @@ def index():
     return render_template('main/index.html', filename='js/bundle.index.js')
 
 
-@main.route('/users')
-def get_users():
-    users = User.query.all()
-    return render_template('main/users.html', users=users)
+@main.route('/campaigns/<int:campaign_id>')
+def get_campaign(campaign_id):
+    return render_template('main/index.html', filename='js/bundle.affiliates.js')
 
 
 @main.route('/users/<name>')

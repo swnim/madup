@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify
 from flask import request
 from flasgger import swag_from
 
-from server.models import User, Advertiser, Campaign
+from server.models import User, Advertiser, Campaign, CampaignAffiliate
 
 api = Blueprint('api', __name__)
 
@@ -23,6 +23,12 @@ def get_campaigns():
     page_offest = request.args.get('offset')
     campaigns = Campaign.query.limit(page_limit).offset(page_offest).all()
     return jsonify([campaign.to_dict() for campaign in campaigns])
+
+
+@api.route('/campaigns/<int:campaign_id>')
+def get_campaign(campaign_id):
+    camaffiliates = CampaignAffiliate.query.filter_by(campaign_id=campaign_id).all()
+    return jsonify([camaffiliate.affiliate.to_dict() for camaffiliate in camaffiliates])
 
 
 @api.route('/users')

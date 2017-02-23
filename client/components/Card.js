@@ -7,6 +7,10 @@ class Card extends React.Component {
         super(props);
     }
 
+    handleClick(campaignId) {
+        window.location.href = "/campaigns/" + campaignId;
+    }
+
     render() {
         let styles = {
             imgStyle: {
@@ -21,7 +25,10 @@ class Card extends React.Component {
         if (this.props.campaigns) {
             var campaigns = this.props.campaigns.map((campaign, key) => {
                 return(
-                    <button className="button green" key={key}>{campaign.platform}</button>
+                    <button key={key}
+                            data-campaign-id={campaign.id}
+                            className="button green"
+                            onClick={this.handleClick.bind(null, campaign.id)}>{campaign.platform}</button>
                 );
             });
         }

@@ -56,9 +56,9 @@ class Cards extends React.Component {
             <div id="cards">
                 {this.state.cards.map((card, key) => {
                     return (<Card key={key}
-                                   name={card.name}
-                                   icon_url={card.icon_url}
-                                   campaigns={card.campaigns}/>
+                                  name={card.name}
+                                  icon_url={card.icon_url}
+                                  campaigns={card.campaigns}/>
                     );
                 })}
                 <div id="loading">
