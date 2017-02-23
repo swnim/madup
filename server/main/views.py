@@ -10,7 +10,7 @@ def index():
 
 
 @main.route('/users')
-def users():
+def get_users():
     users = User.query.all()
     return render_template('main/users.html', users=users)
 
