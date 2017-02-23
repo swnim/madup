@@ -1,0 +1,12 @@
+Get a list of users
+---
+tags:
+  - users
+responses:
+  200:
+    description: Returns a list of users
+    schema:
+      id: users
+      type: array
+      items:
+        $ref: '#/definitions/api_get_user_get_user'

@@ -1,0 +1,21 @@
+Get a list of campaigns
+---
+tags:
+  - campaigns
+responses:
+  200:
+    description: Returns a list of campaigns
+    schema:
+      id: campaigns
+      type: array
+      items:
+        properties:
+          id:
+            type: integer
+            description: The ID of the user
+          install:
+            type: integer
+            description: Install count
+          platform:
+            type: string
+            description: The name of the platform

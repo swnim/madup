@@ -1,0 +1,23 @@
+Get a list of advertisers
+---
+tags:
+  - advertisers
+responses:
+  200:
+    description: Returns a list of advertisers
+    schema:
+      id: advertisers
+      type: array
+      items:
+        properties:
+          id:
+            type: integer
+            description: The ID of the user
+          name:
+            type: string
+            description: The name of the user
+          icon_url:
+            type: string
+            description: Icon URL
+          campaigns:
+            $ref: '#/definitions/api_get_campaigns_get_campaigns'

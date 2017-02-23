@@ -17,6 +17,21 @@ class Config(object):
             ('Access-Control-Allow-Origin', '*'),
             ('Access-Control-Allow-Methods', "GET, POST, PUT, DELETE, OPTIONS"),
             ('Access-Control-Allow-Credentials', "true"),
+        ],
+        "specs": [
+            {
+                "version": "1.0",
+                "title": "Api v1.0",
+                "endpoint": 'v1_spec',
+                "route": '/v1/spec',
+
+                # rule_filter is optional
+                # it is a callable to filter the views to extract
+
+                # "rule_filter": lambda rule: rule.endpoint.startswith(
+                #    'should_be_v1_only'
+                # )
+            }
         ]
     }
 
