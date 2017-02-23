@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_restless import APIManager
 from flasgger import Swagger
 
 from server.models import db, User, Campaign
@@ -23,9 +22,5 @@ def create_app():
 
         app.register_blueprint(main_blueprint)
         app.register_blueprint(api_blueprint, url_prefix='/api/v1')
-
-        manager = APIManager(app, flask_sqlalchemy_db=db)
-        manager.create_api(User, url_prefix='/api/v2', methods=['GET', 'POST'])
-        manager.create_api(Campaign, url_prefix='/api/v2', methods=['GET', 'POST'])
 
     return app
