@@ -29362,7 +29362,7 @@ var Affiliates = function (_React$Component) {
 
             setTimeout(function () {
                 return _this2.getAffiliates();
-            }, 300);
+            }, 150);
         }
     }, {
         key: 'getAffiliates',

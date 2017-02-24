@@ -13,7 +13,7 @@ class Affiliates extends React.Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.getAffiliates(), 300);
+        setTimeout(() => this.getAffiliates(), 150);
     }
 
     getAffiliates() {
