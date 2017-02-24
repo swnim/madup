@@ -29370,7 +29370,6 @@ var Affiliates = function (_React$Component) {
             var _this3 = this;
 
             _axios2.default.get('/api/v1/campaigns/' + this.props.params.id).then(function (res) {
-                console.log(res.data);
                 _this3.setState({
                     active: false,
                     campaignId: res.data.id,
