@@ -29349,7 +29349,7 @@ var Affiliates = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Affiliates.__proto__ || Object.getPrototypeOf(Affiliates)).call(this, props));
 
         _this.state = {
-            loaded: true,
+            active: true,
             affiliates: []
         };
         return _this;
@@ -29358,17 +29358,21 @@ var Affiliates = function (_React$Component) {
     _createClass(Affiliates, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.getAffiliates();
+            var _this2 = this;
+
+            setTimeout(function () {
+                return _this2.getAffiliates();
+            }, 300);
         }
     }, {
         key: 'getAffiliates',
         value: function getAffiliates() {
-            var _this2 = this;
+            var _this3 = this;
 
             _axios2.default.get('/api/v1/campaigns/' + this.props.params.id).then(function (res) {
                 console.log(res.data);
-                _this2.setState({
-                    loaded: false,
+                _this3.setState({
+                    active: false,
                     campaignId: res.data.id,
                     campaignName: res.data.name,
                     campaignIconUrl: res.data.icon_url,
@@ -29382,53 +29386,65 @@ var Affiliates = function (_React$Component) {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                _semanticUiReact.Grid,
-                { container: true },
+                'div',
+                null,
                 _react2.default.createElement(
-                    _semanticUiReact.Grid.Row,
-                    null,
+                    _semanticUiReact.Dimmer,
+                    { active: this.state.active },
                     _react2.default.createElement(
-                        _semanticUiReact.Grid.Column,
-                        null,
-                        _react2.default.createElement(
-                            _semanticUiReact.Header,
-                            { as: 'h2' },
-                            _react2.default.createElement(_semanticUiReact.Image, { shape: 'circular', src: this.state.campaignIconUrl }),
-                            ' ',
-                            this.state.campaignName
-                        )
+                        _semanticUiReact.Loader,
+                        { size: 'big' },
+                        'Loading'
                     )
                 ),
                 _react2.default.createElement(
-                    _semanticUiReact.Grid.Row,
-                    null,
+                    _semanticUiReact.Grid,
+                    { container: true },
                     _react2.default.createElement(
-                        _semanticUiReact.Grid.Column,
-                        { width: 4 },
+                        _semanticUiReact.Grid.Row,
+                        null,
                         _react2.default.createElement(
-                            _semanticUiReact.Menu,
-                            { vertical: true, style: { textAlign: 'left' } },
-                            this.state.affiliates.map(function (affiliate, key) {
-                                return _react2.default.createElement(
-                                    _semanticUiReact.Menu.Item,
-                                    { key: key },
-                                    _react2.default.createElement(
-                                        _semanticUiReact.Label,
-                                        null,
-                                        affiliate.install || '0'
-                                    ),
-                                    affiliate.name
-                                );
-                            })
+                            _semanticUiReact.Grid.Column,
+                            null,
+                            _react2.default.createElement(
+                                _semanticUiReact.Header,
+                                { as: 'h2' },
+                                _react2.default.createElement(_semanticUiReact.Image, { shape: 'circular', src: this.state.campaignIconUrl }),
+                                ' ',
+                                this.state.campaignName
+                            )
                         )
                     ),
                     _react2.default.createElement(
-                        _semanticUiReact.Grid.Column,
-                        { width: 12 },
-                        _react2.default.createElement(_semanticUiReact.Image, { src: 'http://semantic-ui.com/images/wireframe/paragraph.png' })
+                        _semanticUiReact.Grid.Row,
+                        null,
+                        _react2.default.createElement(
+                            _semanticUiReact.Grid.Column,
+                            { width: 4 },
+                            _react2.default.createElement(
+                                _semanticUiReact.Menu,
+                                { vertical: true, style: { textAlign: 'left' } },
+                                this.state.affiliates.map(function (affiliate, key) {
+                                    return _react2.default.createElement(
+                                        _semanticUiReact.Menu.Item,
+                                        { key: key },
+                                        _react2.default.createElement(
+                                            _semanticUiReact.Label,
+                                            null,
+                                            affiliate.install || '0'
+                                        ),
+                                        affiliate.name
+                                    );
+                                })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            _semanticUiReact.Grid.Column,
+                            { width: 12 },
+                            _react2.default.createElement(_semanticUiReact.Image, { src: 'http://semantic-ui.com/images/wireframe/paragraph.png' })
+                        )
                     )
-                ),
-                '          '
+                )
             );
         }
     }]);

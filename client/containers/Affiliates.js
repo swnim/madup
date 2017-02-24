@@ -1,19 +1,19 @@
 import React from 'react';
 import axios from 'axios';
-import { Header, Image, Table, Label, Menu, Grid, Container } from 'semantic-ui-react';
+import { Header, Image, Table, Label, Menu, Grid, Container, Dimmer, Loader } from 'semantic-ui-react';
 
 class Affiliates extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            loaded: true,
+            active: true,
             affiliates: []
         };
     }
 
     componentDidMount() {
-        this.getAffiliates();
+        setTimeout(() => this.getAffiliates(), 300);
     }
 
     getAffiliates() {
@@ -21,7 +21,7 @@ class Affiliates extends React.Component {
             .then(res => {
                 console.log(res.data);
                 this.setState({
-                    loaded: false,
+                    active: false,
                     campaignId: res.data.id,
                     campaignName: res.data.name,
                     campaignIconUrl: res.data.icon_url,
@@ -33,6 +33,10 @@ class Affiliates extends React.Component {
 
     render() {
         return (
+        <div>
+          <Dimmer active={this.state.active}>
+            <Loader size='big'>Loading</Loader>
+          </Dimmer>
           <Grid container>
             <Grid.Row>
               <Grid.Column>
@@ -58,7 +62,9 @@ class Affiliates extends React.Component {
               <Grid.Column width={12}>
                 <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
               </Grid.Column>
-            </Grid.Row>          </Grid>
+            </Grid.Row>
+          </Grid>
+        </div>
         )
     }
 }
