@@ -4,14 +4,10 @@ from server.models import User, db, Affiliate, CampaignAffiliate
 main = Blueprint('main', __name__)
 
 
-@main.route('/')
-def index():
+@main.route('/', defaults={'path': ''})
+@main.route('/<path:path>')
+def index(path):
     return render_template('main/index.html', filename='js/bundle.index.js')
-
-
-@main.route('/campaigns/<int:campaign_id>')
-def get_campaign(campaign_id):
-    return render_template('main/index.html', filename='js/bundle.affiliates.js')
 
 
 @main.route('/users/<name>')

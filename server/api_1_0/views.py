@@ -27,8 +27,13 @@ def get_campaigns():
 
 @api.route('/campaigns/<int:campaign_id>')
 def get_campaign(campaign_id):
-    camaffiliates = CampaignAffiliate.query.filter_by(campaign_id=campaign_id).all()
-    return jsonify([camaffiliate.affiliate.to_dict() for camaffiliate in camaffiliates])
+    campaign = Campaign.query.get(campaign_id)
+    return jsonify({
+        'id': campaign_id,
+        'name': campaign.advertiser.name,
+        'icon_url': campaign.advertiser.icon_url,
+        'affiliates': [camaffiliate.affiliate.to_dict() for camaffiliate in campaign.camaffiliates]
+    })
 
 
 @api.route('/users')

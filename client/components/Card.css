@@ -20,25 +20,3 @@
 .platforms {
     display: inline;
 }
-
-.button {
-    border: none;
-    color: white;
-    padding: 5px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 2px;
-    width: 60px;
-    margin: 0 7px;
-}
-
-.button.blue {
-    background-color: #5bc0de;
-}
-
-.button.green {
-    background-color: #4CAF50;
-}

@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Cards from './components/Cards';
+import App from './App';
+import Campaigns from './containers/Campaigns';
+import Affiliates from './containers/Affiliates';
+import { Router, Route, browserHistory } from 'react-router';
 
 ReactDOM.render(
-    <Cards/>,
-    document.querySelector('#app')
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <Route path="campaigns" component={Campaigns}/>
+      <Route path="campaigns/:id" component={Affiliates}/>
+    </Route>
+  </Router>,
+  document.querySelector('#root')
 );

@@ -1,10 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router';
+import { Button } from 'semantic-ui-react'
 import './Card.css';
 
 
 class Card extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    getUrl(campaignId) {
+        return "/campaigns/" + campaignId;
     }
 
     handleClick(campaignId) {
@@ -18,16 +24,18 @@ class Card extends React.Component {
                 height: "100px",
                 display: "block",
                 margin: "30px auto 10px auto",
-                boarderRadius: "5px"
+                borderRadius: "50%"
             }
         };
 
         if (this.props.campaigns) {
-            var campaigns = this.props.campaigns.map((campaign, key) => {
+            var platforms = this.props.campaigns.map((campaign, key) => {
                 return(
-                    <button key={key}
-                            className="button green"
-                            onClick={this.handleClick.bind(null, campaign.id)}>{campaign.platform}</button>
+                    <Button primary
+                            key={key}
+                            as={Link}
+                            to={this.getUrl(campaign.id)}
+                            size="small">{campaign.platform}</Button>
                 );
             });
         }
@@ -38,7 +46,7 @@ class Card extends React.Component {
                 <div className="container">
                     <h4><b>{this.props.name}</b></h4>
                     <div className="platforms">
-                    {campaigns}
+                        {platforms}
                     </div>
                 </div>
             </div>

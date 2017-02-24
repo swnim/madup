@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React from 'react';
-import Card from './Card';
-import './Cards.css';
+import Card from '../components/Card';
+import { Button } from 'semantic-ui-react'
 
-class Cards extends React.Component {
+class Campaigns extends React.Component {
     constructor(props) {
         super(props);
 
@@ -17,12 +17,10 @@ class Cards extends React.Component {
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
-
-        this.getCards();
+        this.getCampaigns();
     }
 
-    getCards() {
+    getCampaigns() {
         axios.get('/api/v1/advertisers?limit=12&offset=' + this.state.offset)
             .then(res => {
                 this.setState({
@@ -46,7 +44,7 @@ class Cards extends React.Component {
                     loaded: true,
                 });
 
-                this.getCards();
+                this.getCampaigns();
             }
         }
     }
@@ -61,12 +59,12 @@ class Cards extends React.Component {
                                   campaigns={card.campaigns}/>
                     );
                 })}
-                <div id="loading">
-                    <button className="button" style={{margin:0, width:"100%", fontSize:"16px"}} onClick={this.getCards.bind(this)}>Loading...</button>
+                <div id="loading" style={{textAlign: "center"}}>
+                    <Button fluid onClick={this.getCampaigns.bind(this)}>More...</Button>
                 </div>
             </div>
         );
     }
 }
 
-export default Cards;
+export default Campaigns;
