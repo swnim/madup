@@ -3,7 +3,7 @@ import React from 'react';
 import Card from '../components/Card';
 import { Button } from 'semantic-ui-react'
 
-class Campaigns extends React.Component {
+export default class Campaigns extends React.Component {
     constructor(props) {
         super(props);
 
@@ -21,15 +21,21 @@ class Campaigns extends React.Component {
     }
 
     getCampaigns() {
-        axios.get('/api/v1/advertisers?limit=12&offset=' + this.state.offset)
-            .then(res => {
-                this.setState({
-                    loaded: false,
-                    offset: this.state.offset + 12,
-                    cards: this.state.cards.concat(res.data)
-                });
-            })
-            .catch(response => { console.log(response) });
+        this.setState({
+            loaded: false
+        });
+
+        setTimeout(() => {
+            axios.get('/api/v1/advertisers?limit=12&offset=' + this.state.offset)
+                .then(res => {
+                    this.setState({
+                        loaded: true,
+                        offset: this.state.offset + 12,
+                        cards: this.state.cards.concat(res.data)
+                    });
+                })
+                .catch(response => { console.log(response) });
+        }, 150);
     }
 
     handleScroll(event) {
@@ -39,9 +45,9 @@ class Campaigns extends React.Component {
         let totalScrolled = scrollTop + innerHeight;
 
         if (totalScrolled + 100 > windowHeight) {
-            if (!this.state.loaded) {
+            if (this.state.loaded) {
                 this.setState({
-                    loaded: true,
+                    loaded: false,
                 });
 
                 this.getCampaigns();
@@ -60,11 +66,9 @@ class Campaigns extends React.Component {
                     );
                 })}
                 <div id="loading" style={{textAlign: "center"}}>
-                    <Button fluid onClick={this.getCampaigns.bind(this)}>More...</Button>
+                    <Button fluid loading={!this.state.loaded} onClick={this.getCampaigns.bind(this)}>More...</Button>
                 </div>
             </div>
         );
     }
 }
-
-export default Campaigns;

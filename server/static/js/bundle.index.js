@@ -29517,15 +29517,21 @@ var Campaigns = function (_React$Component) {
         value: function getCampaigns() {
             var _this2 = this;
 
-            _axios2.default.get('/api/v1/advertisers?limit=12&offset=' + this.state.offset).then(function (res) {
-                _this2.setState({
-                    loaded: false,
-                    offset: _this2.state.offset + 12,
-                    cards: _this2.state.cards.concat(res.data)
-                });
-            }).catch(function (response) {
-                console.log(response);
+            this.setState({
+                loaded: false
             });
+
+            setTimeout(function () {
+                _axios2.default.get('/api/v1/advertisers?limit=12&offset=' + _this2.state.offset).then(function (res) {
+                    _this2.setState({
+                        loaded: true,
+                        offset: _this2.state.offset + 12,
+                        cards: _this2.state.cards.concat(res.data)
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
+            }, 150);
         }
     }, {
         key: 'handleScroll',
@@ -29536,9 +29542,9 @@ var Campaigns = function (_React$Component) {
             var totalScrolled = scrollTop + innerHeight;
 
             if (totalScrolled + 100 > windowHeight) {
-                if (!this.state.loaded) {
+                if (this.state.loaded) {
                     this.setState({
-                        loaded: true
+                        loaded: false
                     });
 
                     this.getCampaigns();
@@ -29562,7 +29568,7 @@ var Campaigns = function (_React$Component) {
                     { id: 'loading', style: { textAlign: "center" } },
                     _react2.default.createElement(
                         _semanticUiReact.Button,
-                        { fluid: true, onClick: this.getCampaigns.bind(this) },
+                        { fluid: true, loading: !this.state.loaded, onClick: this.getCampaigns.bind(this) },
                         'More...'
                     )
                 )
