@@ -21,7 +21,8 @@ export default class Header extends React.Component {
                 <img src='http://revenue.madup.com/images/logo.svg' style={{width:"98px"}}/>
               </Menu.Item>
               <Menu.Item as={Link} to="/" name='home' active={this.state.activeItem === 'home'} onClick={this.handleItemClick.bind(null, 'home')} />
-              <Menu.Item as={Link} to="/campaigns" name='campaigns' active={this.state.activeItem === 'campaigns'} onClick={this.handleItemClick.bind(null, 'campaigns')} />
+              <Menu.Item as={Link} to="/campaigns" name='캠페인' active={this.state.activeItem === 'campaigns'} onClick={this.handleItemClick.bind(null, 'campaigns')} />
+              <Menu.Item as={Link} to="/affiliates" name='매체' active={this.state.activeItem === 'affiliates'} onClick={this.handleItemClick.bind(null, 'affiliates')} />
             </Menu>
         );
     }

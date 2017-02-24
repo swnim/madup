@@ -1,67 +1,86 @@
-import React from 'react';
 import axios from 'axios';
-import { Header, Image, Table, Label, Menu, Grid, Container, Dimmer, Loader } from 'semantic-ui-react';
+import React from 'react';
+import { Card, Button, Image } from 'semantic-ui-react'
 
 export default class Affiliates extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            active: true,
-            affiliates: []
+            loaded: true,
+            offset: 0,
+            cards: []
         };
     }
 
     componentDidMount() {
-        setTimeout(() => this.getAffiliates(), 150);
+        this.getAffiliates();
     }
 
     getAffiliates() {
-        axios.get('/api/v1/campaigns/' + this.props.params.id)
-            .then(res => {
+        this.setState({
+            loaded: false
+        });
+
+        setTimeout(() => {
+            axios.get('/api/v1/affiliates?limit=12&offset=' + this.state.offset)
+                .then(res => {
+                    this.setState({
+                        loaded: true,
+                        offset: this.state.offset + 12,
+                        cards: this.state.cards.concat(res.data)
+                    });
+                })
+                .catch(response => { console.log(response) });
+        }, 150);
+    }
+
+    handleScroll(event) {
+        let windowHeight = document.body.scrollHeight;
+        let innerHeight = window.innerHeight;
+        let scrollTop = event.srcElement.body.scrollTop;
+        let totalScrolled = scrollTop + innerHeight;
+
+        if (totalScrolled + 100 > windowHeight) {
+            if (this.state.loaded) {
                 this.setState({
-                    active: false,
-                    campaignId: res.data.id,
-                    campaignName: res.data.name,
-                    campaignIconUrl: res.data.icon_url,
-                    affiliates: res.data.affiliates
+                    loaded: false,
                 });
-            })
-            .catch(response => { console.log(response) });
+
+                this.getAffiliates();
+            }
+        }
     }
 
     render() {
         return (
-          <Grid container>
-            <Dimmer active={this.state.active}>
-              <Loader size='big'>Loading</Loader>
-            </Dimmer>
-            <Grid.Row>
-              <Grid.Column>
-                <Header as='h2'>
-                  <Image shape='circular' src={this.state.campaignIconUrl} />
-                  {' '}{this.state.campaignName}
-                </Header>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column width={4}>
-                <Menu vertical style={{textAlign:'left'}}>
-                  {this.state.affiliates.map((affiliate, key) => {
-                    return (
-                        <Menu.Item key={key}>
-                          <Label>{affiliate.install || '0'}</Label>
-                          {affiliate.name}
-                        </Menu.Item>
-                    );
-                  })}
-                </Menu>
-              </Grid.Column>
-              <Grid.Column width={12}>
-                <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        )
+            <div>
+                <Card.Group>
+                    {this.state.cards.map((card, key) => {
+                        return (
+                            <Card key={key}>
+                              <Card.Content>
+                                <Image floated='right' size='mini' src={card.icon_url} />
+                                <Card.Header>{card.name}</Card.Header>
+                                <Card.Meta>
+                                  {card.code}
+                                </Card.Meta>
+                              </Card.Content>
+                              <Card.Content>
+                                <div className='ui two buttons'>
+                                  <Button primary>통계</Button>
+                                  <Button secondary>설정</Button>
+                                </div>
+                              </Card.Content>
+                            </Card>
+                        );
+                    })}
+                </Card.Group>
+
+                <div id="loading" style={{textAlign:"center", marginTop:"20px"}}>
+                    <Button fluid loading={!this.state.loaded} onClick={this.getAffiliates.bind(this)}>More...</Button>
+                </div>
+            </div>
+        );
     }
 }
