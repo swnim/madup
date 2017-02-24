@@ -26,7 +26,6 @@ class Card extends React.Component {
             var campaigns = this.props.campaigns.map((campaign, key) => {
                 return(
                     <button key={key}
-                            data-campaign-id={campaign.id}
                             className="button green"
                             onClick={this.handleClick.bind(null, campaign.id)}>{campaign.platform}</button>
                 );
