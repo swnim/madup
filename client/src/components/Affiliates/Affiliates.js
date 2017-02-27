@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Label, Segment, Dimmer, Loader, Image } from 'semantic-ui-react'
+import { Menu, Label, Dimmer, Loader } from 'semantic-ui-react'
 
 const Affiliates = ({ affiliates, loading }) => {
     let affiliateList = affiliates.map((affiliate, key) => (
