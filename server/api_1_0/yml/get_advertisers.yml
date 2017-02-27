@@ -19,5 +19,5 @@ responses:
           icon_url:
             type: string
             description: Icon URL
-          campaigns:
+          platforms:
             $ref: '#/definitions/api_get_campaigns_get_campaigns'

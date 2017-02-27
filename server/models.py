@@ -66,7 +66,7 @@ class Advertiser(db.Model, BaseMixin):
             id=self.id,
             name=self.name,
             icon_url=self.icon_url,
-            campaigns=[campaign.to_dict() for campaign in self.campaigns]
+            platforms=[campaign.to_dict() for campaign in self.campaigns]
         )
 
 
@@ -138,7 +138,7 @@ class Campaign(db.Model, BaseMixin):
         return dict(
             id=self.id,
             install=self.install,
-            platform=self.platform.name
+            name=self.platform.name
         )
 
 
