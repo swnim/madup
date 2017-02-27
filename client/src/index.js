@@ -4,6 +4,7 @@ import App from './App';
 import { HomeContainer, CampaignsContainer } from './containers';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import 'semantic-ui-css/semantic.min.css';
+import './Animation.css';
 
 ReactDOM.render(
     <Router history={browserHistory}>

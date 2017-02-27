@@ -6,7 +6,7 @@ import './Campaign.css';
 const Campaign = ({ campaign }) => {
     let platforms = campaign.platforms ? campaign.platforms.map((platform, key) => {
         let campaignUrl = '/campaigns/' + platform.id;
-        let primary = key % 2;
+        let primary = (key % 2) ? true : false;
 
         return (
             <Button primary={!primary}
@@ -19,7 +19,7 @@ const Campaign = ({ campaign }) => {
     }) : '';
 
     return (
-        <div className="Campaign">
+        <div className="Campaign fadeIn animated">
             <img src={campaign.icon_url} className="CampaignImage" alt={campaign.name}/>
             <div className="CampaignName">
                 <h4><b>{campaign.name}</b></h4>
