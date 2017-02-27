@@ -17,10 +17,8 @@ def create_app():
 
     with app.app_context():
         """ application blueprints """
-        from server.main.views import main as main_blueprint
         from server.api_1_0.views import api as api_blueprint
 
-        app.register_blueprint(main_blueprint)
         app.register_blueprint(api_blueprint, url_prefix='/api/v1')
 
     return app

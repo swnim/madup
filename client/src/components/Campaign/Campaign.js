@@ -6,9 +6,11 @@ import './Campaign.css';
 const Campaign = ({ campaign }) => {
     let platforms = campaign.platforms ? campaign.platforms.map((platform, key) => {
         let campaignUrl = '/campaigns/' + platform.id;
+        let primary = key % 2;
 
         return (
-            <Button primary
+            <Button primary={!primary}
+                    secondary={primary}
                     key={key}
                     as={Link}
                     to={campaignUrl}
