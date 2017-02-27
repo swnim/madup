@@ -8,7 +8,7 @@ const App = ({ routes, children }) => {
     return (
         <div className="App">
             <Header activeItem={activeItem}/>
-            <Container fluid>
+            <Container fluid style={{marginTop:'54px'}}>
                 { children }
             </Container>
         </div>

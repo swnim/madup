@@ -1,7 +1,6 @@
 import React from 'react';
 import { Campaign } from '../../components';
-import { Button } from 'semantic-ui-react'
-import './Campaigns.css';
+import { Button } from 'semantic-ui-react';
 
 const Campaigns = ({ loading, offset, campaigns, onClick }) => {
     let campaignList = campaigns.map((campaign, key) => {
